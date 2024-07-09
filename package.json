@@ -1,15 +1,18 @@
 {
+  "proxy": "http://127.0.0.1:4000",
   "name": "phase-4-map-collections",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
+    "start": "PORT=4001 parcel",
     "build": "parcel build"
   },
   "devDependencies": {
-    "parcel": "latest"
+    "parcel": "latest",
+    "process": "^0.11.10"
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1"
   }
 }
