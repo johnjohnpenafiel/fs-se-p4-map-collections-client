@@ -34659,26 +34659,52 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
         return errors;
     }
     function handleSubmit(event) {
+        console.log("submitting");
         event.preventDefault();
         setErrors({});
         const validationErrors = validateForm({
             name: event.target.username.value,
             pass: event.target.password.value
         });
+        console.log("validating...");
         if (validationErrors.name === "" && validationErrors.pass === "") {
-            fetch("http://localhost:4000/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json"
-                },
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
-            });
-            console.log("Sign-in Successful");
+            if (!loggedIn) sign_in();
+            else sign_up();
         }
+    }
+    function sign_up() {
+        fetch("http://localhost:4000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        }).then((response)=>response.json()).then((data)=>{
+            console.log(data);
+        });
+        console.log("Sign-up Successful");
+    }
+    function sign_in() {
+        console.log("signing in...");
+        fetch("http://localhost:4000/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        }).then((response)=>response.json()).then((data)=>{
+            console.log(data);
+        });
     }
     function handleSignUpButton(event) {
         event.preventDefault();
@@ -34696,7 +34722,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         type: "hidden"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 62,
+                        lineNumber: 98,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34710,7 +34736,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         children: "Username"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 65,
+                                        lineNumber: 101,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -34725,13 +34751,13 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         type: "text"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 68,
+                                        lineNumber: 104,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 64,
+                                lineNumber: 100,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34742,7 +34768,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         children: "Password"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 81,
+                                        lineNumber: 117,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -34757,19 +34783,19 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         type: "password"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 84,
+                                        lineNumber: 120,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 80,
+                                lineNumber: 116,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 63,
+                        lineNumber: 99,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34780,12 +34806,12 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                     children: errors.name
                                 }, void 0, false, {
                                     fileName: "src/components/Login.jsx",
-                                    lineNumber: 98,
+                                    lineNumber: 134,
                                     columnNumber: 32
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 98,
+                                lineNumber: 134,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -34793,18 +34819,18 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                     children: errors.pass
                                 }, void 0, false, {
                                     fileName: "src/components/Login.jsx",
-                                    lineNumber: 99,
+                                    lineNumber: 135,
                                     columnNumber: 32
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 99,
+                                lineNumber: 135,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 97,
+                        lineNumber: 133,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34815,18 +34841,18 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                             children: "Sign Up"
                         }, void 0, false, {
                             fileName: "src/components/Login.jsx",
-                            lineNumber: 102,
+                            lineNumber: 138,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 101,
+                        lineNumber: 137,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Login.jsx",
-                lineNumber: 61,
+                lineNumber: 97,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34836,7 +34862,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         children: "Already have an account?"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 111,
+                        lineNumber: 147,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -34845,13 +34871,13 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         children: "Log In"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 112,
+                        lineNumber: 148,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Login.jsx",
-                lineNumber: 110,
+                lineNumber: 146,
                 columnNumber: 9
             }, this)
         ]
@@ -34868,7 +34894,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         type: "hidden"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 123,
+                        lineNumber: 159,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34882,7 +34908,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         children: "Username"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 126,
+                                        lineNumber: 162,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -34897,13 +34923,13 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         type: "text"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 129,
+                                        lineNumber: 165,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 125,
+                                lineNumber: 161,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34914,7 +34940,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         children: "Password"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 142,
+                                        lineNumber: 178,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -34929,19 +34955,19 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         type: "password"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 145,
+                                        lineNumber: 181,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 141,
+                                lineNumber: 177,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 124,
+                        lineNumber: 160,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34952,12 +34978,12 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                     children: errors.name
                                 }, void 0, false, {
                                     fileName: "src/components/Login.jsx",
-                                    lineNumber: 159,
+                                    lineNumber: 195,
                                     columnNumber: 30
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 159,
+                                lineNumber: 195,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -34965,18 +34991,18 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                     children: errors.pass
                                 }, void 0, false, {
                                     fileName: "src/components/Login.jsx",
-                                    lineNumber: 160,
+                                    lineNumber: 196,
                                     columnNumber: 30
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 160,
+                                lineNumber: 196,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 158,
+                        lineNumber: 194,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34987,18 +35013,18 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                             children: "Log in"
                         }, void 0, false, {
                             fileName: "src/components/Login.jsx",
-                            lineNumber: 163,
+                            lineNumber: 199,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 162,
+                        lineNumber: 198,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Login.jsx",
-                lineNumber: 122,
+                lineNumber: 158,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35008,7 +35034,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         children: "Don't have an account?"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 172,
+                        lineNumber: 208,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -35017,13 +35043,13 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         children: "Sign Up"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 173,
+                        lineNumber: 209,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Login.jsx",
-                lineNumber: 171,
+                lineNumber: 207,
                 columnNumber: 7
             }, this)
         ]

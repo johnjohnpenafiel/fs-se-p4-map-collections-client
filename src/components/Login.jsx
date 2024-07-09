@@ -26,6 +26,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
   }
 
   function handleSubmit(event) {
+    console.log("submitting");
     event.preventDefault();
     setErrors({});
 
@@ -34,20 +35,55 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
       pass: event.target.password.value,
     });
 
+    console.log("validating...");
+
     if (validationErrors.name === "" && validationErrors.pass === "") {
-      fetch("http://localhost:4000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
-      console.log("Sign-in Successful");
+      if (!loggedIn) {
+        sign_in();
+      } else {
+        sign_up();
+      }
     }
+  }
+
+  function sign_up() {
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+    console.log("Sign-up Successful");
+  }
+
+  function sign_in() {
+    console.log("signing in...");
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   }
 
   function handleSignUpButton(event) {
