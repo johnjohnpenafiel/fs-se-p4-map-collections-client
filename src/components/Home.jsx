@@ -5,10 +5,16 @@ import { Progress } from "./ui/progress.jsx";
 import NavBar from "./NavBar.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import NavBar from "./NavBar.jsx";
+import { Button } from "./ui/button.jsx";
+import Logout from "./Logout.jsx";
+import CollectionItem from "./CollectionItem.jsx";
 
 function Home({ user }) {
   const [collections, setCollections] = useState([]);
   const [progress, setProgress] = useState(13);
+  const [items, setItems] = useState([]);
+
+  // navigate = useNavigate();
 
   useEffect(() => {
     setProgress(15);
@@ -40,28 +46,49 @@ function Home({ user }) {
     );
   }
 
-  const collections_list = collections.map((collection) => (
+  function handleCardClick(id) {
+    event.preventDefault();
+    fetch(`http://localhost:4000/collection_items/${id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return undefined;
+        }
+      })
+      .then((data) => {
+        console.log("loading items... ", data);
+        setItems(data);
+      });
+  }
+
+  const collectionsList = collections.map((collection) => (
     <CollectionCard
       key={collection.id}
       id={collection.id}
       title={collection.title}
       className="m-y-5"
+      handleCardClick={handleCardClick}
     />
+  ));
+
+  const itemsList = items.map((item) => (
+    <CollectionItem key={item.id} item={item} />
   ));
 
   return (
     <div>
       {/* <NavBar /> */}
       <main>
-        <h2 className="text-center">Welcome {user.username}</h2>
-
-        <div className="flex justify-between">
-          <div className="mx-5">
+        <h2 className="p-4 text-center">Welcome {user.username}</h2>
+        <div className="flex flex-col md:flex-row min-h-screen">
+          <div className="flex-1 mx-5">
             <h3 className="text-center">Your Collections:</h3>
-            <ul className="collection-list">{collections_list}</ul>
+            <ul className="collection-list">{collectionsList}</ul>
           </div>
-          <div className="mx-5" htmlFor="collection-details">
+          <div className="mx-5 flex-1" htmlFor="collection-details">
             <p className="text-right">Show detailed collection view here</p>
+            <ul className="items-list">{itemsList}</ul>
           </div>
         </div>
       </main>

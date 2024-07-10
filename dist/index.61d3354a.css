@@ -367,6 +367,10 @@ body {
   margin-top: auto;
 }
 
+.mt-1 {
+  margin-top: .25rem;
+}
+
 .block {
   display: block;
 }
@@ -727,6 +731,10 @@ body {
 
 .p-10 {
   padding: 2.5rem;
+}
+
+.p-2 {
+  padding: .5rem;
 }
 
 .px-2 {
