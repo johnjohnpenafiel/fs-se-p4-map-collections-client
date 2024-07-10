@@ -1,26 +1,17 @@
 import React from "react";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-// import { useNavigate } from "react-router-dom";
+import { Card, CardTitle } from "./ui/card";
 
-function CollectionCard({ id, title }) {
-  // const navigate = useNavigate();
-
-  //   const handleClick = () => {
-  //     navigate(`/collections/${id}`);
-  //   };
-
+function CollectionCard({ id, title, handleCardClick }) {
   return (
-    <Card className="mt-5">
-      <CardTitle className="text-center px-5">{title}</CardTitle>
-    </Card>
+    <button
+      className="flex flex-col mt-2 p-2"
+      onClick={() => handleCardClick(id)}
+    >
+      <Card>
+        <CardTitle className="text-center px-5">{title}</CardTitle>
+      </Card>
+    </button>
   );
 }
 

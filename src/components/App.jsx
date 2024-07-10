@@ -31,17 +31,7 @@ function App() {
   }, []);
 
   if (!user) {
-    return (
-      <div className="flex flex-col md:flex-row min-h-screen">
-        <div className="flex-1 m-auto">
-          <p className="text-center w-[75%] m-auto">
-            Welcome to PinsBook, where users can find and share their worldly
-            inspirations
-          </p>
-        </div>
-        <Login setUser={setUser} />
-      </div>
-    );
+    return <Login setUser={setUser} />;
   }
 
   return (
