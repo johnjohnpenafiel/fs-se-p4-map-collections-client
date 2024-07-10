@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./Home";
 import CollectionDetails from "./CollectionsDetails";
 import Login from "./Login";
@@ -9,8 +9,29 @@ function App() {
   const [user, setUser] = useState("");
 
   // useEffect() for check_session
+  useEffect(() => {
+    fetch("http://localhost:4000/check_session", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          return {};
+        }
+      })
+      .then((data) => {
+        console.log("userLoader data", data);
+        setUser(data);
+      });
+  }, []);
 
-  if (!loggedIn) {
+  if (!user) {
     return (
       <Login
         setLoggedIn={setLoggedIn}

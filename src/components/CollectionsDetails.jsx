@@ -6,7 +6,7 @@ function CollectionDetails() {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/collections/${collectionId}/locations`)
+    fetch(`http://localhost:4000/collections/${collectionId}/items`)
       .then((response) => response.json())
       .then((data) => setLocations(data))
       .catch((error) => console.error("Fetching Locations Failed: ", error));

@@ -27375,14 +27375,30 @@ function App() {
     const [loggedIn, setLoggedIn] = (0, _react.useState)(false);
     const [user, setUser] = (0, _react.useState)("");
     // useEffect() for check_session
-    if (!loggedIn) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginDefault.default), {
+    (0, _react.useEffect)(()=>{
+        fetch("http://localhost:4000/check_session", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            credentials: "include"
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else return {};
+        }).then((data)=>{
+            console.log("userLoader data", data);
+            setUser(data);
+        });
+    }, []);
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginDefault.default), {
         setLoggedIn: setLoggedIn,
         setUser: setUser,
         loggedIn: loggedIn,
         user: user
     }, void 0, false, {
         fileName: "src/components/App.jsx",
-        lineNumber: 15,
+        lineNumber: 36,
         columnNumber: 7
     }, this);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -27390,12 +27406,12 @@ function App() {
             user: user
         }, void 0, false, {
             fileName: "src/components/App.jsx",
-            lineNumber: 26,
+            lineNumber: 47,
             columnNumber: 7
         }, this)
     }, void 0, false);
 }
-_s(App, "I/sF1onzvcveWL52vs0FvnoSl48=");
+_s(App, "6VC3w+ww34wcC5oVfal4Tz340xo=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27442,6 +27458,7 @@ function Home({ user }) {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    className: "text-center",
                     children: [
                         "Welcome ",
                         user.username
@@ -27458,10 +27475,40 @@ function Home({ user }) {
                     lineNumber: 31,
                     columnNumber: 9
                 }, this),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                    className: "collection-list",
-                    children: collections_list
-                }, void 0, false, {
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "flex justify-content",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                                className: "collection-list",
+                                children: collections_list
+                            }, void 0, false, {
+                                fileName: "src/components/Home.jsx",
+                                lineNumber: 34,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "src/components/Home.jsx",
+                            lineNumber: 33,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            htmlFor: "collection-details",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                className: "text-right",
+                                children: "Show detailed collection view here"
+                            }, void 0, false, {
+                                fileName: "src/components/Home.jsx",
+                                lineNumber: 37,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "src/components/Home.jsx",
+                            lineNumber: 36,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
                     fileName: "src/components/Home.jsx",
                     lineNumber: 32,
                     columnNumber: 9
@@ -27534,12 +27581,11 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 // import { useNavigate } from "react-router-dom";
 function CollectionCard({ id, title }) {
     // const navigate = useNavigate();
-    const handleClick = ()=>{
-        navigate(`/collections/${id}`);
-    };
+    //   const handleClick = () => {
+    //     navigate(`/collections/${id}`);
+    //   };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-            onClick: handleClick,
             children: title
         }, void 0, false, {
             fileName: "src/components/CollectionCard.jsx",
@@ -34909,7 +34955,7 @@ function CollectionDetails() {
     const { collectionId } = (0, _reactRouterDom.useParams)();
     const [locations, setLocations] = (0, _react.useState)([]);
     (0, _react.useEffect)(()=>{
-        fetch(`http://localhost:4000/collections/${collectionId}/locations`).then((response)=>response.json()).then((data)=>setLocations(data)).catch((error)=>console.error("Fetching Locations Failed: ", error));
+        fetch(`http://localhost:4000/collections/${collectionId}/items`).then((response)=>response.json()).then((data)=>setLocations(data)).catch((error)=>console.error("Fetching Locations Failed: ", error));
     }, [
         collectionId
     ]);

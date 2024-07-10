@@ -27,9 +27,16 @@ function Home({ user }) {
   return (
     <div>
       <main>
-        <h2>Welcome {user.username}</h2>
+        <h2 className="text-center">Welcome {user.username}</h2>
         <h3>Your Collections:</h3>
-        <ul className="collection-list">{collections_list}</ul>
+        <div className="flex justify-content">
+          <div>
+            <ul className="collection-list">{collections_list}</ul>
+          </div>
+          <div htmlFor="collection-details">
+            <p className="text-right">Show detailed collection view here</p>
+          </div>
+        </div>
       </main>
     </div>
   );

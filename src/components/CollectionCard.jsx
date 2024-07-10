@@ -4,13 +4,13 @@ import React from "react";
 function CollectionCard({ id, title }) {
   // const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`/collections/${id}`);
-  };
+  //   const handleClick = () => {
+  //     navigate(`/collections/${id}`);
+  //   };
 
   return (
     <div>
-      <li onClick={handleClick}>{title}</li>
+      <li>{title}</li>
     </div>
   );
 }
