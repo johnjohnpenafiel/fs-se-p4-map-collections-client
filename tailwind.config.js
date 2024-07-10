@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+<<<<<<< HEAD
   content: ["./src/**/*.{js,jsx,tsx,html}", "./index.html"],
   theme: {
     extend: {},
@@ -17,6 +18,16 @@ module.exports = {
     "./src/**/*.{js,jsx,tsx,html}",
     "./index.html",
   ],
+=======
+  darkMode: ["class"],
+  content: [
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+    './app/**/*.{js,jsx}',
+    './src/**/*.{js,jsx}',
+  ],
+  prefix: "",
+>>>>>>> e00ffbd31a0b42f0240e691e973a066281f54f51
   theme: {
     container: {
       center: true,
@@ -62,6 +73,7 @@ module.exports = {
         },
       },
       borderRadius: {
+<<<<<<< HEAD
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
         sm: "calc(var(--radius) - 4px)",
@@ -69,6 +81,12 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+=======
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+>>>>>>> e00ffbd31a0b42f0240e691e973a066281f54f51
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -86,4 +104,8 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> e00ffbd31a0b42f0240e691e973a066281f54f51
