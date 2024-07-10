@@ -1,11 +1,19 @@
 import React from "react"
+import { useNavigate } from "react-router-dom";
 
-function CollectionCard({title}){
-    
+function CollectionCard({id, title}){
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/collections/${id}`);
+      };
 
     return(
         <div>
-            <h3>{title}</h3>
+            <li onClick={handleClick}>
+                {title}
+            </li>
         </div>
     )
 }

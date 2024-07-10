@@ -10,14 +10,16 @@ function Home({user}){
 
 
     useEffect(() => {
-        fetch(`http://localhost:4000/collections/${user.id}`)
-        .then(response => response.json())
-        .then(setCollections)
-        .catch(error => console.error("Fetching Collections Failed: ", error));
-    }, []);
+        if (user.id) {
+            fetch(`http://localhost:4000/collections/${user.id}`)
+            .then(response => response.json())
+            .then(setCollections)
+            .catch(error => console.error("Fetching Collections Failed: ", error));
+        }}, [user.id]);
+
 
     const collections_list = collections.map(collection => (
-        <CollectionCard key={collection.id} title={collection.title}/>
+        <CollectionCard key={collection.id} id={collection.id} title={collection.title}/>
     ))
     
     return (
@@ -25,9 +27,7 @@ function Home({user}){
             <main>
                 <h2>`Welcome ${user.name}`</h2>
                 <h3>Your Collections:</h3>
-                <ul className='collection-list'>
-                    {collections_list}
-                </ul>
+                <ul className='collection-list'>{collections_list}</ul>
             </main>
         </div>
     )
