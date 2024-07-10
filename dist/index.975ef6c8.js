@@ -27365,8 +27365,8 @@ var _react = require("react");
 var _reactRouterDom = require("react-router-dom");
 var _home = require("./Home");
 var _homeDefault = parcelHelpers.interopDefault(_home);
-var _navBar = require("./NavBar");
-var _navBarDefault = parcelHelpers.interopDefault(_navBar);
+var _collectionsDetails = require("./CollectionsDetails");
+var _collectionsDetailsDefault = parcelHelpers.interopDefault(_collectionsDetails);
 var _login = require("./Login");
 var _loginDefault = parcelHelpers.interopDefault(_login);
 var _s = $RefreshSig$();
@@ -27386,19 +27386,35 @@ function App() {
     }, this);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Routes), {
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                path: "/home",
-                element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homeDefault.default), {}, void 0, false, {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                    path: "/home",
+                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homeDefault.default), {
+                        user: user
+                    }, void 0, false, {
+                        fileName: "src/components/App.jsx",
+                        lineNumber: 25,
+                        columnNumber: 38
+                    }, void 0)
+                }, void 0, false, {
                     fileName: "src/components/App.jsx",
                     lineNumber: 25,
-                    columnNumber: 38
-                }, void 0)
-            }, void 0, false, {
-                fileName: "src/components/App.jsx",
-                lineNumber: 25,
-                columnNumber: 9
-            }, this)
-        }, void 0, false, {
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                    path: "/collections/:collectionId",
+                    element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _collectionsDetailsDefault.default), {}, void 0, false, {
+                        fileName: "src/components/App.jsx",
+                        lineNumber: 28,
+                        columnNumber: 20
+                    }, void 0)
+                }, void 0, false, {
+                    fileName: "src/components/App.jsx",
+                    lineNumber: 26,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "src/components/App.jsx",
             lineNumber: 24,
             columnNumber: 7
@@ -27420,7 +27436,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Home":"5rQzE","./NavBar":"eqUVf","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Login":"9LO69"}],"5rQzE":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Home":"5rQzE","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Login":"9LO69","./CollectionsDetails":"ez4fj"}],"5rQzE":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$dc47 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27432,45 +27448,73 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _collections = require("./Collections");
-var _collectionsDefault = parcelHelpers.interopDefault(_collections);
+var _reactRouterDom = require("react-router-dom");
+var _collectionCardJsx = require("./CollectionCard.jsx");
+var _collectionCardJsxDefault = parcelHelpers.interopDefault(_collectionCardJsx);
 var _s = $RefreshSig$();
-function Home() {
+function Home({ user }) {
     _s();
-    const [user, setUser] = useState("");
-    const [collections, setCollections] = useState([]);
-    useEffect(()=>{
-        fetch(`/collections/${user.id}`).then((response)=>response.json()).then(setCollections).catch((error)=>console.error("Fetching Collections Failed: ", error));
-    }, []);
-    const collections_list = collections.map((collection)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _collectionsDefault.default), {
-            collection: collection
+    const [collections, setCollections] = (0, _react.useState)([]);
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    (0, _react.useEffect)(()=>{
+        if (user.id) fetch(`http://localhost:4000/collections/${user.id}`).then((response)=>response.json()).then(setCollections).catch((error)=>console.error("Fetching Collections Failed: ", error));
+    }, [
+        user.id
+    ]);
+    const collections_list = collections.map((collection)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _collectionCardJsxDefault.default), {
+            id: collection.id,
+            title: collection.title
         }, collection.id, false, {
             fileName: "src/components/Home.jsx",
-            lineNumber: 20,
+            lineNumber: 22,
             columnNumber: 9
         }, this));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("main", {
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                className: "collection-list",
-                children: collections_list
-            }, void 0, false, {
-                fileName: "src/components/Home.jsx",
-                lineNumber: 26,
-                columnNumber: 17
-            }, this)
-        }, void 0, false, {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    children: [
+                        "`Welcome $",
+                        user.name,
+                        "`"
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Home.jsx",
+                    lineNumber: 28,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                    children: "Your Collections:"
+                }, void 0, false, {
+                    fileName: "src/components/Home.jsx",
+                    lineNumber: 29,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                    className: "collection-list",
+                    children: collections_list
+                }, void 0, false, {
+                    fileName: "src/components/Home.jsx",
+                    lineNumber: 30,
+                    columnNumber: 17
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "src/components/Home.jsx",
-            lineNumber: 25,
+            lineNumber: 27,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "src/components/Home.jsx",
-        lineNumber: 24,
+        lineNumber: 26,
         columnNumber: 9
     }, this);
 }
-_s(Home, "ddugrLHG1j0muMKg4rrXxIc8DzM=");
+_s(Home, "XzV7sFKrqt6KXEbJALY6KgQn/jQ=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
 _c = Home;
 exports.default = Home;
 var _c;
@@ -27481,32 +27525,7 @@ $RefreshReg$(_c, "Home");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Collections":"gAn5q","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gAn5q":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$96e1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$96e1.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-function Collections() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false);
-}
-_c = Collections;
-exports.default = Collections;
-var _c;
-$RefreshReg$(_c, "Collections");
-
-  $parcel$ReactRefreshHelpers$96e1.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe","./CollectionCard.jsx":"ciAq0"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27536,45 +27555,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"eqUVf":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$979d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$979d.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactRouterDom = require("react-router-dom");
-function NavBar() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
-        className: "navbar",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
-            to: "/profile/:id",
-            children: "Profile"
-        }, void 0, false, {
-            fileName: "src/components/NavBar.jsx",
-            lineNumber: 6,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "src/components/NavBar.jsx",
-        lineNumber: 5,
-        columnNumber: 5
-    }, this);
-}
-_c = NavBar;
-exports.default = NavBar;
-var _c;
-$RefreshReg$(_c, "NavBar");
-
-  $parcel$ReactRefreshHelpers$979d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9xmpe":[function(require,module,exports) {
+},{}],"9xmpe":[function(require,module,exports) {
 /**
  * React Router DOM v6.24.1
  *
@@ -34628,7 +34609,57 @@ function persistAppliedTransitions(_window, transitions) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9LO69":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ciAq0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$b4ff = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$b4ff.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
+function CollectionCard({ id, title }) {
+    _s();
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const handleClick = ()=>{
+        navigate(`/collections/${id}`);
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+            onClick: handleClick,
+            children: title
+        }, void 0, false, {
+            fileName: "src/components/CollectionCard.jsx",
+            lineNumber: 14,
+            columnNumber: 13
+        }, this)
+    }, void 0, false, {
+        fileName: "src/components/CollectionCard.jsx",
+        lineNumber: 13,
+        columnNumber: 9
+    }, this);
+}
+_s(CollectionCard, "CzcTeTziyjMsSrAVmHuCCb6+Bfg=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c = CollectionCard;
+exports.default = CollectionCard;
+var _c;
+$RefreshReg$(_c, "CollectionCard");
+
+  $parcel$ReactRefreshHelpers$b4ff.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9LO69":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4580 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -34901,6 +34932,75 @@ $RefreshReg$(_c, "Login");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"irmnC":[function() {},{}]},["farZc","1xC6H","8lqZg"], "8lqZg", "parcelRequire6c22")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ez4fj":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1ef8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1ef8.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
+function CollectionDetails() {
+    _s();
+    const { collectionId } = (0, _reactRouterDom.useParams)();
+    const [locations, setLocations] = (0, _react.useState)([]);
+    const [loading, setLoading] = (0, _react.useState)(true);
+    const [error, setError] = (0, _react.useState)(null);
+    (0, _react.useEffect)(()=>{
+        fetch(`http://localhost:4000/collections/${collectionId}/locations`).then((response)=>response.json()).then((data)=>setLocations(data)).catch((error)=>console.error("Fetching Locations Failed: ", error));
+    }, [
+        collectionId
+    ]);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: "Locations in Collection"
+            }, void 0, false, {
+                fileName: "src/components/CollectionsDetails.jsx",
+                lineNumber: 19,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                children: locations.map((location)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                        children: location.name
+                    }, location.id, false, {
+                        fileName: "src/components/CollectionsDetails.jsx",
+                        lineNumber: 22,
+                        columnNumber: 11
+                    }, this))
+            }, void 0, false, {
+                fileName: "src/components/CollectionsDetails.jsx",
+                lineNumber: 20,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/CollectionsDetails.jsx",
+        lineNumber: 18,
+        columnNumber: 5
+    }, this);
+}
+_s(CollectionDetails, "IuwHIpUp7QR6tms2KracFhQ6UmU=", false, function() {
+    return [
+        (0, _reactRouterDom.useParams)
+    ];
+});
+_c = CollectionDetails;
+exports.default = CollectionDetails;
+var _c;
+$RefreshReg$(_c, "CollectionDetails");
+
+  $parcel$ReactRefreshHelpers$1ef8.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"irmnC":[function() {},{}]},["farZc","1xC6H","8lqZg"], "8lqZg", "parcelRequire6c22")
 
 //# sourceMappingURL=index.975ef6c8.js.map

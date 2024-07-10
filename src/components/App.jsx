@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import CollectionDetails from "./CollectionDetails";
+import CollectionDetails from "./CollectionsDetails";
 import Login from "./Login";
 
 function App() {
@@ -23,7 +23,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<Home user={user} />} />
-        <Route path="/collections/:collectionId" element={<CollectionDetails />} />
+        <Route
+          path="/collections/:collectionId"
+          element={<CollectionDetails />}
+        />
       </Routes>
     </BrowserRouter>
   );
