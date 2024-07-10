@@ -6,7 +6,7 @@
 #   git config --global core.excludesfile '.gitignore_global'
 
 # Ignore Parcel Cache File
-.parcel-cache
+.parcel-cache/
 /dist
 
 # Ignore bundler config.
