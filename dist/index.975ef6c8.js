@@ -34668,12 +34668,14 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
         });
         console.log("validating...");
         if (validationErrors.name === "" && validationErrors.pass === "") {
-            if (!loggedIn) sign_in();
-            else sign_up();
+            if (signUp) signup();
+            else login();
         }
+        setUsername("");
+        setPassword("");
     }
-    function sign_up() {
-        fetch("http://localhost:4000/login", {
+    function signup() {
+        fetch("http://localhost:4000/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -34689,7 +34691,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
         });
         console.log("Sign-up Successful");
     }
-    function sign_in() {
+    function login() {
         console.log("signing in...");
         fetch("http://localhost:4000/login", {
             method: "POST",
@@ -34704,184 +34706,13 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
             })
         }).then((response)=>response.json()).then((data)=>{
             console.log(data);
+            setLoggedIn(true);
         });
     }
     function handleSignUpButton(event) {
         event.preventDefault();
         setSignUp(!signUp);
     }
-    if (signUp === true) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-                className: "mt-8 mx-8 space-y-6",
-                onSubmit: handleSubmit,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        defaultValue: "true",
-                        name: "remember",
-                        type: "hidden"
-                    }, void 0, false, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 98,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "-space-y-px rounded-md shadow-sm",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                        className: "sr-only",
-                                        htmlFor: "username",
-                                        children: "Username"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 101,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                        autoComplete: "username",
-                                        className: "relative block w-full appearance-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
-                                        id: "username",
-                                        name: "username",
-                                        value: username,
-                                        onChange: (e)=>setUsername(e.target.value),
-                                        placeholder: "Username",
-                                        required: true,
-                                        type: "text"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 104,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 100,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                        className: "sr-only",
-                                        htmlFor: "password",
-                                        children: "Password"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 117,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                        autoComplete: "current-password",
-                                        className: "relative block w-full appearance-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
-                                        id: "password",
-                                        name: "password",
-                                        value: password,
-                                        onChange: (e)=>setPassword(e.target.value),
-                                        placeholder: "Password",
-                                        required: true,
-                                        type: "password"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 120,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 116,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 99,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "text-red-600",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                children: errors.name && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    children: errors.name
-                                }, void 0, false, {
-                                    fileName: "src/components/Login.jsx",
-                                    lineNumber: 134,
-                                    columnNumber: 32
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 134,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                children: errors.pass && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    children: errors.pass
-                                }, void 0, false, {
-                                    fileName: "src/components/Login.jsx",
-                                    lineNumber: 135,
-                                    columnNumber: 32
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 135,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 133,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "pt-4",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                            className: "group relative flex w-full justify-center rounded-md border border-white bg-black py-2 px-4 text-sm font-medium text-white hover:bg-gray focus:outline-none focus:ring-2 focus:ring-3 focus:ring-offset-2",
-                            type: "submit",
-                            children: "Sign Up"
-                        }, void 0, false, {
-                            fileName: "src/components/Login.jsx",
-                            lineNumber: 138,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 137,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Login.jsx",
-                lineNumber: 97,
-                columnNumber: 9
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "mx-8",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: "Already have an account?"
-                    }, void 0, false, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 147,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        type: "submit",
-                        onClick: handleSignUpButton,
-                        children: "Log In"
-                    }, void 0, false, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 148,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Login.jsx",
-                lineNumber: 146,
-                columnNumber: 9
-            }, this)
-        ]
-    }, void 0, true);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -34894,7 +34725,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         type: "hidden"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 159,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34908,7 +34739,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         children: "Username"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 162,
+                                        lineNumber: 103,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -34923,13 +34754,13 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         type: "text"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 165,
+                                        lineNumber: 106,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 161,
+                                lineNumber: 102,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34940,7 +34771,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         children: "Password"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 178,
+                                        lineNumber: 119,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -34955,19 +34786,19 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                         type: "password"
                                     }, void 0, false, {
                                         fileName: "src/components/Login.jsx",
-                                        lineNumber: 181,
+                                        lineNumber: 122,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 177,
+                                lineNumber: 118,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 160,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34978,12 +34809,12 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                     children: errors.name
                                 }, void 0, false, {
                                     fileName: "src/components/Login.jsx",
-                                    lineNumber: 195,
+                                    lineNumber: 136,
                                     columnNumber: 30
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 195,
+                                lineNumber: 136,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -34991,18 +34822,18 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                                     children: errors.pass
                                 }, void 0, false, {
                                     fileName: "src/components/Login.jsx",
-                                    lineNumber: 196,
+                                    lineNumber: 137,
                                     columnNumber: 30
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/Login.jsx",
-                                lineNumber: 196,
+                                lineNumber: 137,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 194,
+                        lineNumber: 135,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -35010,46 +34841,50 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                             className: "group relative flex w-full justify-center rounded-md border border-white bg-black py-2 px-4 text-sm font-medium text-white hover:bg-gray focus:outline-none focus:ring-2 focus:ring-3 focus:ring-offset-2",
                             type: "submit",
-                            children: "Log in"
+                            children: !signUp ? "Login" : "Sign up"
                         }, void 0, false, {
                             fileName: "src/components/Login.jsx",
-                            lineNumber: 199,
+                            lineNumber: 140,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 198,
+                        lineNumber: 139,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Login.jsx",
-                lineNumber: 158,
+                lineNumber: 99,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "mx-8",
+                className: "mx-8 text-right mt-2",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: "Don't have an account?"
-                    }, void 0, false, {
+                        children: [
+                            " ",
+                            !signUp ? "Don't have an account?" : "Already have an account?",
+                            " "
+                        ]
+                    }, void 0, true, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 208,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                         type: "submit",
                         onClick: handleSignUpButton,
-                        children: "Sign Up"
+                        children: !signUp ? "Sign up" : "Login"
                     }, void 0, false, {
                         fileName: "src/components/Login.jsx",
-                        lineNumber: 209,
+                        lineNumber: 153,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Login.jsx",
-                lineNumber: 207,
+                lineNumber: 148,
                 columnNumber: 7
             }, this)
         ]
