@@ -1,4 +1,13 @@
 import React from "react";
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 // import { useNavigate } from "react-router-dom";
 
 function CollectionCard({ id, title }) {
@@ -9,9 +18,9 @@ function CollectionCard({ id, title }) {
   //   };
 
   return (
-    <div>
-      <li>{title}</li>
-    </div>
+    <Card>
+      <CardTitle className="text-center px-5">{title}</CardTitle>
+    </Card>
   );
 }
 

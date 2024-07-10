@@ -3,10 +3,11 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./Home";
 import CollectionDetails from "./CollectionsDetails";
 import Login from "./Login";
+import CollectionCard from "./CollectionCard";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState({});
 
   // useEffect() for check_session
   useEffect(() => {
@@ -29,17 +30,15 @@ function App() {
         console.log("userLoader data", data);
         setUser(data);
       });
+    if (user) {
+      setIsLoading(false);
+    } else if (!user) {
+      setIsLoading(true);
+    }
   }, []);
 
   if (!user) {
-    return (
-      <Login
-        setLoggedIn={setLoggedIn}
-        setUser={setUser}
-        loggedIn={loggedIn}
-        user={user}
-      />
-    );
+    return <Login setUser={setUser} />;
   }
 
   return (
@@ -59,3 +58,7 @@ function App() {
 }
 
 export default App;
+
+// fix login component loading before check session is finished
+// add shadcn and tailwind css styling to collection cards and divs
+// add NavBar styling and learn react routing
