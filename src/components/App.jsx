@@ -8,6 +8,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState("");
 
+  // useEffect() for check_session
+
   if (!loggedIn) {
     return (
       <Login
@@ -20,15 +22,18 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/home" element={<Home user={user} />} />
-        <Route
-          path="/collections/:collectionId"
-          element={<CollectionDetails />}
-        />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <Home user={user} />
+      {/* <BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<Home user={user} />} />
+          <Route
+            path="/collections/:collectionId"
+            element={<CollectionDetails />}
+          />
+        </Routes>
+      </BrowserRouter> */}
+    </>
   );
 }
 

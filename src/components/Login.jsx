@@ -86,6 +86,7 @@ function Login({ setLoggedIn, loggedIn, user, setUser }) {
       .then((data) => {
         console.log(data);
         setLoggedIn(true);
+        setUser(data);
       });
   }
 

@@ -1,22 +1,18 @@
-import React from "react"
-import { useNavigate } from "react-router-dom";
+import React from "react";
+// import { useNavigate } from "react-router-dom";
 
-function CollectionCard({id, title}){
+function CollectionCard({ id, title }) {
+  // const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/collections/${id}`);
+  };
 
-    const handleClick = () => {
-        navigate(`/collections/${id}`);
-      };
-
-    return(
-        <div>
-            <li onClick={handleClick}>
-                {title}
-            </li>
-        </div>
-    )
+  return (
+    <div>
+      <li onClick={handleClick}>{title}</li>
+    </div>
+  );
 }
 
 export default CollectionCard;
-
