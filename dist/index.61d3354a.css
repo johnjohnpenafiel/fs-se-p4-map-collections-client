@@ -323,6 +323,10 @@ body {
   z-index: 50;
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -359,6 +363,10 @@ body {
   margin-top: 1.25rem;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .block {
   display: block;
 }
@@ -369,6 +377,10 @@ body {
 
 .inline-flex {
   display: inline-flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .hidden {
@@ -415,6 +427,10 @@ body {
   min-height: 80px;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -455,8 +471,28 @@ body {
   width: 50%;
 }
 
+.w-\[70\%\] {
+  width: 70%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-\[75\%\] {
+  width: 75%;
+}
+
 .flex-1 {
   flex: 1;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-none {
+  flex: none;
 }
 
 .shrink-0 {
@@ -484,12 +520,20 @@ body {
   appearance: none;
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .flex-row {
   flex-direction: row;
 }
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .content-center {
@@ -506,6 +550,10 @@ body {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
 }
 
 .gap-1 {
@@ -673,6 +721,14 @@ body {
   padding: 1px;
 }
 
+.p-4 {
+  padding: 1rem;
+}
+
+.p-10 {
+  padding: 2.5rem;
+}
+
 .px-2 {
   padding-left: .5rem;
   padding-right: .5rem;
@@ -740,6 +796,10 @@ body {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pt-10 {
+  padding-top: 2.5rem;
 }
 
 .text-center {
@@ -1113,6 +1173,12 @@ body {
   .sm\:text-sm {
     font-size: .875rem;
     line-height: 1.25rem;
+  }
+}
+
+@media (width >= 768px) {
+  .md\:flex-row {
+    flex-direction: row;
   }
 }
 /*# sourceMappingURL=index.61d3354a.css.map */

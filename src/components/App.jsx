@@ -3,10 +3,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./Home";
 import CollectionDetails from "./CollectionsDetails";
 import Login from "./Login";
-import CollectionCard from "./CollectionCard";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
 
   // useEffect() for check_session
@@ -23,22 +21,27 @@ function App() {
         if (response.ok) {
           return response.json();
         } else {
-          return {};
+          return undefined;
         }
       })
       .then((data) => {
         console.log("userLoader data", data);
         setUser(data);
       });
-    if (user) {
-      setIsLoading(false);
-    } else if (!user) {
-      setIsLoading(true);
-    }
   }, []);
 
   if (!user) {
-    return <Login setUser={setUser} />;
+    return (
+      <div className="flex flex-col md:flex-row min-h-screen">
+        <div className="flex-1 m-auto">
+          <p className="text-center w-[75%] m-auto">
+            Welcome to PinsBook, where users can find and share their worldly
+            inspirations
+          </p>
+        </div>
+        <Login setUser={setUser} />
+      </div>
+    );
   }
 
   return (
