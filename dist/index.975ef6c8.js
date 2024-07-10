@@ -27477,7 +27477,8 @@ function Home({ user }) {
     }, this);
     const collections_list = collections.map((collection)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _collectionCardJsxDefault.default), {
             id: collection.id,
-            title: collection.title
+            title: collection.title,
+            className: "m-y-5"
         }, collection.id, false, {
             fileName: "src/components/Home.jsx",
             lineNumber: 44,
@@ -27494,7 +27495,7 @@ function Home({ user }) {
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Home.jsx",
-                    lineNumber: 55,
+                    lineNumber: 56,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27508,7 +27509,7 @@ function Home({ user }) {
                                     children: "Your Collections:"
                                 }, void 0, false, {
                                     fileName: "src/components/Home.jsx",
-                                    lineNumber: 59,
+                                    lineNumber: 60,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
@@ -27516,13 +27517,13 @@ function Home({ user }) {
                                     children: collections_list
                                 }, void 0, false, {
                                     fileName: "src/components/Home.jsx",
-                                    lineNumber: 60,
+                                    lineNumber: 61,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Home.jsx",
-                            lineNumber: 58,
+                            lineNumber: 59,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27533,29 +27534,29 @@ function Home({ user }) {
                                 children: "Show detailed collection view here"
                             }, void 0, false, {
                                 fileName: "src/components/Home.jsx",
-                                lineNumber: 63,
+                                lineNumber: 64,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/Home.jsx",
-                            lineNumber: 62,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Home.jsx",
-                    lineNumber: 57,
+                    lineNumber: 58,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/Home.jsx",
-            lineNumber: 54,
+            lineNumber: 55,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/Home.jsx",
-        lineNumber: 52,
+        lineNumber: 53,
         columnNumber: 5
     }, this);
 }
@@ -27621,6 +27622,7 @@ function CollectionCard({ id, title }) {
     //     navigate(`/collections/${id}`);
     //   };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _card.Card), {
+        className: "mt-5",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _card.CardTitle), {
             className: "text-center px-5",
             children: title

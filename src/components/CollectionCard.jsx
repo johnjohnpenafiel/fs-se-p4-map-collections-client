@@ -18,7 +18,7 @@ function CollectionCard({ id, title }) {
   //   };
 
   return (
-    <Card>
+    <Card className="mt-5">
       <CardTitle className="text-center px-5">{title}</CardTitle>
     </Card>
   );

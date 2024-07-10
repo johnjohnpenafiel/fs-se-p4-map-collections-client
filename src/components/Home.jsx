@@ -45,6 +45,7 @@ function Home({ user }) {
       key={collection.id}
       id={collection.id}
       title={collection.title}
+      className="m-y-5"
     />
   ));
 
