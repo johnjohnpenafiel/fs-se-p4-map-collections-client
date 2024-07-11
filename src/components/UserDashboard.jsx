@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
 import CollectionCard from "./CollectionCard.jsx";
 import { Progress } from "./ui/progress.jsx";
-import NavBar from "./NavBar.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import NavBar from "./NavBar.jsx";
+import { useOutletContext } from "react-router-dom";
 
-function Home({ user }) {
+function UserDashboard() {
   const [collections, setCollections] = useState([]);
   const [progress, setProgress] = useState(13);
+
+  const [user, setUser, login] = useOutletContext();
 
   useEffect(() => {
     setProgress(15);
@@ -51,7 +50,6 @@ function Home({ user }) {
 
   return (
     <div>
-      {/* <NavBar /> */}
       <main>
         <h2 className="text-center">Welcome {user.username}</h2>
 
@@ -69,4 +67,4 @@ function Home({ user }) {
   );
 }
 
-export default Home;
+export default UserDashboard;

@@ -2954,14 +2954,18 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
-var _app = require("./components/App");
-var _appDefault = parcelHelpers.interopDefault(_app);
+var _clientDefault = parcelHelpers.interopDefault(_client);
+var _reactRouterDom = require("react-router-dom");
 var _indexCss = require("./index.css");
-const container = document.getElementById("root");
-const root = (0, _client.createRoot)(container);
-root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
+var _routes = require("./routes");
+var _routesDefault = parcelHelpers.interopDefault(_routes);
+const router = (0, _reactRouterDom.createBrowserRouter)((0, _routesDefault.default));
+const root = (0, _clientDefault.default).createRoot(document.getElementById("root"));
+root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.RouterProvider), {
+    router: router
+}, void 0, false, {
     fileName: "src/index.js",
-    lineNumber: 7,
+    lineNumber: 8,
     columnNumber: 13
 }, undefined));
 
@@ -2970,7 +2974,7 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/App":"bCxdS","./index.css":"irmnC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.css":"irmnC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe","./routes":"8tnKw"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27213,81 +27217,175 @@ module.exports = require("ef03b89c8fe2794e");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"bCxdS":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$475a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$475a.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactRouterDom = require("react-router-dom");
-var _home = require("./Home");
-var _homeDefault = parcelHelpers.interopDefault(_home);
-var _collectionsDetails = require("./CollectionsDetails");
-var _collectionsDetailsDefault = parcelHelpers.interopDefault(_collectionsDetails);
-var _login = require("./Login");
-var _loginDefault = parcelHelpers.interopDefault(_login);
-var _collectionCard = require("./CollectionCard");
-var _collectionCardDefault = parcelHelpers.interopDefault(_collectionCard);
-var _s = $RefreshSig$();
-function App() {
-    _s();
-    const [isLoading, setIsLoading] = (0, _react.useState)(true);
-    const [user, setUser] = (0, _react.useState)({});
-    // useEffect() for check_session
-    (0, _react.useEffect)(()=>{
-        fetch("http://localhost:4000/check_session", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            credentials: "include"
-        }).then((response)=>{
-            if (response.ok) return response.json();
-            else return {};
-        }).then((data)=>{
-            console.log("userLoader data", data);
-            setUser(data);
+},{}],"irmnC":[function() {},{}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
         });
-        if (user) setIsLoading(false);
-        else if (!user) setIsLoading(true);
-    }, []);
-    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginDefault.default), {
-        setUser: setUser
-    }, void 0, false, {
-        fileName: "src/components/App.jsx",
-        lineNumber: 41,
-        columnNumber: 12
-    }, this);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homeDefault.default), {
-            user: user
-        }, void 0, false, {
-            fileName: "src/components/App.jsx",
-            lineNumber: 46,
-            columnNumber: 7
-        }, this)
-    }, void 0, false);
-}
-_s(App, "XgmaejmscVpCPaCEudRqHDq1T2E=");
-_c = App;
-exports.default = App; // fix login component loading before check session is finished
- // add shadcn and tailwind css styling to collection cards and divs
- // add NavBar styling and learn react routing
-var _c;
-$RefreshReg$(_c, "App");
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
-  $parcel$ReactRefreshHelpers$475a.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
+},{}],"km3Ru":[function(require,module,exports) {
+"use strict";
+var Refresh = require("7422ead32dcc1e6b");
+function debounce(func, delay) {
+    {
+        let timeout = undefined;
+        let lastTime = 0;
+        return function(args) {
+            // Call immediately if last call was more than the delay ago.
+            // Otherwise, set a timeout. This means the first call is fast
+            // (for the common case of a single update), and subsequent updates
+            // are batched.
+            let now = Date.now();
+            if (now - lastTime > delay) {
+                lastTime = now;
+                func.call(null, args);
+            } else {
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    timeout = undefined;
+                    lastTime = Date.now();
+                    func.call(null, args);
+                }, delay);
+            }
+        };
+    }
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./Home":"5rQzE","./CollectionsDetails":"ez4fj","./Login":"9LO69","./CollectionCard":"ciAq0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9xmpe":[function(require,module,exports) {
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30);
+// Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module1) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module1.id + " " + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module1) {
+    if (isReactRefreshBoundary(module1.exports)) {
+        registerExportsForReactRefresh(module1);
+        if (module1.hot) {
+            module1.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module1.exports;
+            });
+            module1.hot.accept(function(getParents) {
+                var prevExports = module1.hot.data.prevExports;
+                var nextExports = module1.exports;
+                // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports);
+                // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+}
+// When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module1) {
+    var exports = module1.exports, id = module1.id;
+    Refresh.register(exports, id + " %exports%");
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        var typeID = id + " %exports% " + key;
+        Refresh.register(exportValue, typeID);
+    }
+}
+
+},{"7422ead32dcc1e6b":"786KC"}],"9xmpe":[function(require,module,exports) {
 /**
  * React Router DOM v6.24.1
  *
@@ -34341,41 +34439,238 @@ function persistAppliedTransitions(_window, transitions) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"5rQzE":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$dc47 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8tnKw":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$0da7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$dc47.prelude(module);
+$parcel$ReactRefreshHelpers$0da7.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _app = require("./components/App");
+var _appDefault = parcelHelpers.interopDefault(_app);
+var _userDashboard = require("./components/UserDashboard");
+var _userDashboardDefault = parcelHelpers.interopDefault(_userDashboard);
+var _about = require("./components/About");
+var _aboutDefault = parcelHelpers.interopDefault(_about);
+var _login = require("./components/Login");
+var _loginDefault = parcelHelpers.interopDefault(_login);
+const routes = [
+    {
+        path: "/",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
+            fileName: "src/routes.jsx",
+            lineNumber: 9,
+            columnNumber: 18
+        }, undefined),
+        children: [
+            {
+                path: "/",
+                element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userDashboardDefault.default), {}, void 0, false, {
+                    fileName: "src/routes.jsx",
+                    lineNumber: 13,
+                    columnNumber: 26
+                }, undefined)
+            },
+            {
+                path: "/about",
+                element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _aboutDefault.default), {}, void 0, false, {
+                    fileName: "src/routes.jsx",
+                    lineNumber: 17,
+                    columnNumber: 26
+                }, undefined)
+            },
+            {
+                path: "/login",
+                element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginDefault.default), {}, void 0, false, {
+                    fileName: "src/routes.jsx",
+                    lineNumber: 21,
+                    columnNumber: 26
+                }, undefined)
+            }
+        ]
+    }
+];
+exports.default = routes;
+
+  $parcel$ReactRefreshHelpers$0da7.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/App":"bCxdS","./components/About":"hkKyJ","./components/Login":"9LO69","./components/UserDashboard":"12rf5"}],"bCxdS":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$475a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$475a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactRouterDom = require("react-router-dom");
+var _navBar = require("./NavBar");
+var _navBarDefault = parcelHelpers.interopDefault(_navBar);
+var _s = $RefreshSig$();
+function App() {
+    _s();
+    const [user, setUser] = (0, _react.useState)({});
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const [isLoggedIn, setIsLoggedIn] = (0, _react.useState)(false);
+    // const login = () => {
+    //   setIsLoggedIn(true)
+    // }
+    // const signout = () => {
+    //   setIsLoggedIn(false)
+    // }
+    const logout = ()=>{
+        fetch("https://localhost:4000/logout", {
+            method: "DELETE",
+            credentials: "include"
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                children: "Error logging out"
+            }, void 0, false, {
+                fileName: "src/components/App.jsx",
+                lineNumber: 28,
+                columnNumber: 16
+            }, this);
+        });
+    };
+    // useEffect() for check_session 
+    (0, _react.useEffect)(()=>{
+        fetch("http://localhost:4000/check_session", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            credentials: "include"
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else return undefined;
+        }).then(setUser);
+    }, []);
+    (0, _react.useEffect)(()=>{
+        if (!user) navigate("/login");
+        else navigate("/");
+    }, [
+        user
+    ]);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navBarDefault.default), {
+                logout: logout
+            }, void 0, false, {
+                fileName: "src/components/App.jsx",
+                lineNumber: 64,
+                columnNumber: 15
+            }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                to: "/login"
+            }, void 0, false, {
+                fileName: "src/components/App.jsx",
+                lineNumber: 64,
+                columnNumber: 45
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Outlet), {
+                context: [
+                    setUser,
+                    login,
+                    user
+                ]
+            }, void 0, false, {
+                fileName: "src/components/App.jsx",
+                lineNumber: 65,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/App.jsx",
+        lineNumber: 63,
+        columnNumber: 5
+    }, this);
+}
+_s(App, "MXdHIjun+AHDvcQwVvK0fk2z9Rw=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c = App;
+exports.default = App;
+var _c;
+$RefreshReg$(_c, "App");
+
+  $parcel$ReactRefreshHelpers$475a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./NavBar":"eqUVf"}],"eqUVf":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$979d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$979d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouterDom = require("react-router-dom");
+// import "../NavBar.css";
+function NavBar({ logout }) {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
+        className: "navbar",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
+                to: "/",
+                children: "User Dashboard"
+            }, void 0, false, {
+                fileName: "src/components/NavBar.jsx",
+                lineNumber: 8,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
+                to: "/about",
+                children: "About"
+            }, void 0, false, {
+                fileName: "src/components/NavBar.jsx",
+                lineNumber: 11,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: logout,
+                children: "Logout"
+            }, void 0, false, {
+                fileName: "src/components/NavBar.jsx",
+                lineNumber: 15,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/NavBar.jsx",
+        lineNumber: 6,
+        columnNumber: 5
+    }, this);
+}
+_c = NavBar;
+exports.default = NavBar;
+var _c;
+$RefreshReg$(_c, "NavBar");
+
+  $parcel$ReactRefreshHelpers$979d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hkKyJ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$42ed = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$42ed.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -34383,19 +34678,328 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-// import { useNavigate } from "react-router-dom";
+function About() {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false);
+}
+_c = About;
+exports.default = About;
+var _c;
+$RefreshReg$(_c, "About");
+
+  $parcel$ReactRefreshHelpers$42ed.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9LO69":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$4580 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$4580.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
+function Login() {
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const [errors, setErrors] = (0, _react.useState)({});
+    const [signUp, setSignUp] = (0, _react.useState)(false);
+    const [setUser, login] = (0, _reactRouterDom.useOutletContext)();
+    function validateForm(data) {
+        const errors = {
+            name: "",
+            pass: ""
+        };
+        console.log("validateForm errors object", errors);
+        if (!data.name) errors.name = "Username is required";
+        else if (!/^[a-zA-Z0-9\s'-]+$/.test(data.name.trim())) errors.name = "Username can only contain letters, numbers, spaces, hyphens, and apostrophes.";
+        if (!data.pass) errors.pass = "Password is required";
+        else if (!/^[a-zA-Z0-9\s.,!?'"-:()]+$/.test(data.pass.trim())) errors.pass = "Password can only contain letters, numbers, spaces, and common punctuation.";
+        return errors;
+    }
+    function handleSubmit(event) {
+        console.log("submitting");
+        event.preventDefault();
+        setErrors({});
+        const validationErrors = validateForm({
+            name: event.target.username.value,
+            pass: event.target.password.value
+        });
+        console.log("validating...");
+        if (validationErrors.name === "" && validationErrors.pass === "") {
+            if (signUp) signup();
+            else signin();
+        }
+        setUsername("");
+        setPassword("");
+    }
+    function signup() {
+        fetch("http://localhost:4000/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        }).then((response)=>response.json()).then((data)=>{
+            console.log(data);
+        });
+        console.log("Sign-up Successful");
+    }
+    function signin() {
+        console.log("signing in...");
+        fetch("http://localhost:4000/login", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        }).then((response)=>response.json()).then((data)=>{
+            console.log(data);
+            setUser(data);
+            login();
+        });
+    }
+    function handleSignUpButton(event) {
+        event.preventDefault();
+        setSignUp(!signUp);
+    }
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Outlet), {
+                context: setUser
+            }, void 0, false, {
+                fileName: "src/components/Login.jsx",
+                lineNumber: 104,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                className: "mt-8 mx-8 space-y-6",
+                onSubmit: handleSubmit,
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        defaultValue: "true",
+                        name: "remember",
+                        type: "hidden"
+                    }, void 0, false, {
+                        fileName: "src/components/Login.jsx",
+                        lineNumber: 106,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "-space-y-px rounded-md shadow-sm",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                        className: "sr-only",
+                                        htmlFor: "username",
+                                        children: "Username"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Login.jsx",
+                                        lineNumber: 109,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                        autoComplete: "username",
+                                        className: "relative block w-full appearance-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
+                                        id: "username",
+                                        name: "username",
+                                        value: username,
+                                        onChange: (e)=>setUsername(e.target.value),
+                                        placeholder: "Username",
+                                        required: true,
+                                        type: "text"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Login.jsx",
+                                        lineNumber: 112,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/Login.jsx",
+                                lineNumber: 108,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                        className: "sr-only",
+                                        htmlFor: "password",
+                                        children: "Password"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Login.jsx",
+                                        lineNumber: 125,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                        autoComplete: "current-password",
+                                        className: "relative block w-full appearance-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
+                                        id: "password",
+                                        name: "password",
+                                        value: password,
+                                        onChange: (e)=>setPassword(e.target.value),
+                                        placeholder: "Password",
+                                        required: true,
+                                        type: "password"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Login.jsx",
+                                        lineNumber: 128,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/Login.jsx",
+                                lineNumber: 124,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Login.jsx",
+                        lineNumber: 107,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "text-red-600",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: errors.name && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                    children: errors.name
+                                }, void 0, false, {
+                                    fileName: "src/components/Login.jsx",
+                                    lineNumber: 142,
+                                    columnNumber: 30
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/components/Login.jsx",
+                                lineNumber: 142,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: errors.pass && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                    children: errors.pass
+                                }, void 0, false, {
+                                    fileName: "src/components/Login.jsx",
+                                    lineNumber: 143,
+                                    columnNumber: 30
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/components/Login.jsx",
+                                lineNumber: 143,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Login.jsx",
+                        lineNumber: 141,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "pt-4",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "group relative flex w-full justify-center rounded-md border border-white bg-black py-2 px-4 text-sm font-medium text-white hover:bg-gray focus:outline-none focus:ring-2 focus:ring-3 focus:ring-offset-2",
+                            type: "submit",
+                            children: !signUp ? "Login" : "Sign up"
+                        }, void 0, false, {
+                            fileName: "src/components/Login.jsx",
+                            lineNumber: 146,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/Login.jsx",
+                        lineNumber: 145,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Login.jsx",
+                lineNumber: 105,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "mx-8 text-right mt-2",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: [
+                            " ",
+                            !signUp ? "Don't have an account?" : "Already have an account?",
+                            " "
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Login.jsx",
+                        lineNumber: 155,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        type: "submit",
+                        onClick: handleSignUpButton,
+                        children: !signUp ? "Sign up" : "Login"
+                    }, void 0, false, {
+                        fileName: "src/components/Login.jsx",
+                        lineNumber: 159,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Login.jsx",
+                lineNumber: 154,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true);
+}
+_s(Login, "uGCt49vS1c8+AfSa0L+prv2RgGw=", false, function() {
+    return [
+        (0, _reactRouterDom.useOutletContext)
+    ];
+});
+_c = Login;
+exports.default = Login;
+var _c;
+$RefreshReg$(_c, "Login");
+
+  $parcel$ReactRefreshHelpers$4580.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"12rf5":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$44b0 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$44b0.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
 var _collectionCardJsx = require("./CollectionCard.jsx");
 var _collectionCardJsxDefault = parcelHelpers.interopDefault(_collectionCardJsx);
 var _progressJsx = require("./ui/progress.jsx");
-var _navBarJsx = require("./NavBar.jsx");
-var _navBarJsxDefault = parcelHelpers.interopDefault(_navBarJsx);
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-// import NavBar from "./NavBar.jsx";
-function Home({ user }) {
+function UserDashboard() {
     _s();
     const [collections, setCollections] = (0, _react.useState)([]);
     const [progress, setProgress] = (0, _react.useState)(13);
+    const [user, setUser, login] = (0, _reactRouterDom.useOutletContext)();
     (0, _react.useEffect)(()=>{
         setProgress(15);
         if (user.id) {
@@ -34417,8 +35021,8 @@ function Home({ user }) {
         className: "w-[50%]",
         children: "Loading"
     }, void 0, false, {
-        fileName: "src/components/Home.jsx",
-        lineNumber: 37,
+        fileName: "src/components/UserDashboard.jsx",
+        lineNumber: 36,
         columnNumber: 7
     }, this);
     const collections_list = collections.map((collection)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _collectionCardJsxDefault.default), {
@@ -34426,8 +35030,8 @@ function Home({ user }) {
             title: collection.title,
             className: "m-y-5"
         }, collection.id, false, {
-            fileName: "src/components/Home.jsx",
-            lineNumber: 44,
+            fileName: "src/components/UserDashboard.jsx",
+            lineNumber: 43,
             columnNumber: 5
         }, this));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34440,8 +35044,8 @@ function Home({ user }) {
                         user.username
                     ]
                 }, void 0, true, {
-                    fileName: "src/components/Home.jsx",
-                    lineNumber: 56,
+                    fileName: "src/components/UserDashboard.jsx",
+                    lineNumber: 54,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34454,22 +35058,22 @@ function Home({ user }) {
                                     className: "text-center",
                                     children: "Your Collections:"
                                 }, void 0, false, {
-                                    fileName: "src/components/Home.jsx",
-                                    lineNumber: 60,
+                                    fileName: "src/components/UserDashboard.jsx",
+                                    lineNumber: 58,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
                                     className: "collection-list",
                                     children: collections_list
                                 }, void 0, false, {
-                                    fileName: "src/components/Home.jsx",
-                                    lineNumber: 61,
+                                    fileName: "src/components/UserDashboard.jsx",
+                                    lineNumber: 59,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
-                            fileName: "src/components/Home.jsx",
-                            lineNumber: 59,
+                            fileName: "src/components/UserDashboard.jsx",
+                            lineNumber: 57,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -34479,45 +35083,49 @@ function Home({ user }) {
                                 className: "text-right",
                                 children: "Show detailed collection view here"
                             }, void 0, false, {
-                                fileName: "src/components/Home.jsx",
-                                lineNumber: 64,
+                                fileName: "src/components/UserDashboard.jsx",
+                                lineNumber: 62,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
-                            fileName: "src/components/Home.jsx",
-                            lineNumber: 63,
+                            fileName: "src/components/UserDashboard.jsx",
+                            lineNumber: 61,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
-                    fileName: "src/components/Home.jsx",
-                    lineNumber: 58,
+                    fileName: "src/components/UserDashboard.jsx",
+                    lineNumber: 56,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
-            fileName: "src/components/Home.jsx",
-            lineNumber: 55,
+            fileName: "src/components/UserDashboard.jsx",
+            lineNumber: 53,
             columnNumber: 7
         }, this)
     }, void 0, false, {
-        fileName: "src/components/Home.jsx",
-        lineNumber: 53,
+        fileName: "src/components/UserDashboard.jsx",
+        lineNumber: 52,
         columnNumber: 5
     }, this);
 }
-_s(Home, "U6GKBbSY3Hr+rdDghY1lZvQW7SE=");
-_c = Home;
-exports.default = Home;
+_s(UserDashboard, "h87y1reFpgAOud2vq/PZqn7NGzg=", false, function() {
+    return [
+        (0, _reactRouterDom.useOutletContext)
+    ];
+});
+_c = UserDashboard;
+exports.default = UserDashboard;
 var _c;
-$RefreshReg$(_c, "Home");
+$RefreshReg$(_c, "UserDashboard");
 
-  $parcel$ReactRefreshHelpers$dc47.postlude(module);
+  $parcel$ReactRefreshHelpers$44b0.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./CollectionCard.jsx":"ciAq0","./ui/progress.jsx":"c71g9","./NavBar.jsx":"eqUVf","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ciAq0":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./CollectionCard.jsx":"ciAq0","./ui/progress.jsx":"c71g9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe"}],"ciAq0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b4ff = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -39613,145 +40221,7 @@ exports.twJoin = twJoin;
 exports.twMerge = twMerge;
 exports.validators = validators;
 
-},{}],"km3Ru":[function(require,module,exports) {
-"use strict";
-var Refresh = require("7422ead32dcc1e6b");
-function debounce(func, delay) {
-    {
-        let timeout = undefined;
-        let lastTime = 0;
-        return function(args) {
-            // Call immediately if last call was more than the delay ago.
-            // Otherwise, set a timeout. This means the first call is fast
-            // (for the common case of a single update), and subsequent updates
-            // are batched.
-            let now = Date.now();
-            if (now - lastTime > delay) {
-                lastTime = now;
-                func.call(null, args);
-            } else {
-                clearTimeout(timeout);
-                timeout = setTimeout(function() {
-                    timeout = undefined;
-                    lastTime = Date.now();
-                    func.call(null, args);
-                }, delay);
-            }
-        };
-    }
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30);
-// Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module1) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module1.id + " " + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module1) {
-    if (isReactRefreshBoundary(module1.exports)) {
-        registerExportsForReactRefresh(module1);
-        if (module1.hot) {
-            module1.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module1.exports;
-            });
-            module1.hot.accept(function(getParents) {
-                var prevExports = module1.hot.data.prevExports;
-                var nextExports = module1.exports;
-                // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports);
-                // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-}
-// When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module1) {
-    var exports = module1.exports, id = module1.id;
-    Refresh.register(exports, id + " %exports%");
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        var typeID = id + " %exports% " + key;
-        Refresh.register(exportValue, typeID);
-    }
-}
-
-},{"7422ead32dcc1e6b":"786KC"}],"gLPxS":[function(require,module,exports) {
+},{}],"gLPxS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$a108 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -40146,384 +40616,6 @@ function dispatchDiscreteCustomEvent(target, event) {
 }
 var Root = Primitive;
 
-},{"react":"21dqq","react-dom":"j6uA9","@radix-ui/react-slot":"26CNW","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eqUVf":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$979d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$979d.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _reactRouterDom = require("react-router-dom");
-function NavBar() {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
-        className: "navbar",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.NavLink), {
-            to: "/profile/:id",
-            children: "Profile"
-        }, void 0, false, {
-            fileName: "src/components/NavBar.jsx",
-            lineNumber: 6,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "src/components/NavBar.jsx",
-        lineNumber: 5,
-        columnNumber: 5
-    }, this);
-}
-_c = NavBar;
-exports.default = NavBar;
-var _c;
-$RefreshReg$(_c, "NavBar");
-
-  $parcel$ReactRefreshHelpers$979d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ez4fj":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$1ef8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$1ef8.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouterDom = require("react-router-dom");
-var _s = $RefreshSig$();
-function CollectionDetails() {
-    _s();
-    const { collectionId } = (0, _reactRouterDom.useParams)();
-    const [locations, setLocations] = (0, _react.useState)([]);
-    (0, _react.useEffect)(()=>{
-        fetch(`http://localhost:4000/collections/${collectionId}/items`).then((response)=>response.json()).then((data)=>setLocations(data)).catch((error)=>console.error("Fetching Locations Failed: ", error));
-    }, [
-        collectionId
-    ]);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Locations in Collection"
-            }, void 0, false, {
-                fileName: "src/components/CollectionsDetails.jsx",
-                lineNumber: 17,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-                children: locations.map((location)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
-                        children: location.name
-                    }, location.id, false, {
-                        fileName: "src/components/CollectionsDetails.jsx",
-                        lineNumber: 20,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
-                fileName: "src/components/CollectionsDetails.jsx",
-                lineNumber: 18,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/CollectionsDetails.jsx",
-        lineNumber: 16,
-        columnNumber: 5
-    }, this);
-}
-_s(CollectionDetails, "VX3DhiAGxzDgaDaJ0R6swlXC+pY=", false, function() {
-    return [
-        (0, _reactRouterDom.useParams)
-    ];
-});
-_c = CollectionDetails;
-exports.default = CollectionDetails;
-var _c;
-$RefreshReg$(_c, "CollectionDetails");
-
-  $parcel$ReactRefreshHelpers$1ef8.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9LO69":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$4580 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$4580.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _s = $RefreshSig$();
-function Login({ setUser }) {
-    _s();
-    const [username, setUsername] = (0, _react.useState)("");
-    const [password, setPassword] = (0, _react.useState)("");
-    const [errors, setErrors] = (0, _react.useState)({});
-    const [signUp, setSignUp] = (0, _react.useState)(false);
-    function validateForm(data) {
-        const errors = {
-            name: "",
-            pass: ""
-        };
-        console.log("validateForm errors object", errors);
-        if (!data.name) errors.name = "Username is required";
-        else if (!/^[a-zA-Z0-9\s'-]+$/.test(data.name.trim())) errors.name = "Username can only contain letters, numbers, spaces, hyphens, and apostrophes.";
-        if (!data.pass) errors.pass = "Password is required";
-        else if (!/^[a-zA-Z0-9\s.,!?'"-:()]+$/.test(data.pass.trim())) errors.pass = "Password can only contain letters, numbers, spaces, and common punctuation.";
-        return errors;
-    }
-    function handleSubmit(event) {
-        console.log("submitting");
-        event.preventDefault();
-        setErrors({});
-        const validationErrors = validateForm({
-            name: event.target.username.value,
-            pass: event.target.password.value
-        });
-        console.log("validating...");
-        if (validationErrors.name === "" && validationErrors.pass === "") {
-            if (signUp) signup();
-            else login();
-        }
-        setUsername("");
-        setPassword("");
-    }
-    function signup() {
-        fetch("http://localhost:4000/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        }).then((response)=>response.json()).then((data)=>{
-            console.log(data);
-        });
-        console.log("Sign-up Successful");
-    }
-    function login() {
-        console.log("signing in...");
-        fetch("http://localhost:4000/login", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password
-            })
-        }).then((response)=>response.json()).then((data)=>{
-            console.log(data);
-            setUser(data);
-        });
-    }
-    function handleSignUpButton(event) {
-        event.preventDefault();
-        setSignUp(!signUp);
-    }
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-                className: "mt-8 mx-8 space-y-6",
-                onSubmit: handleSubmit,
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        defaultValue: "true",
-                        name: "remember",
-                        type: "hidden"
-                    }, void 0, false, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 100,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "-space-y-px rounded-md shadow-sm",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                        className: "sr-only",
-                                        htmlFor: "username",
-                                        children: "Username"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 103,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                        autoComplete: "username",
-                                        className: "relative block w-full appearance-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
-                                        id: "username",
-                                        name: "username",
-                                        value: username,
-                                        onChange: (e)=>setUsername(e.target.value),
-                                        placeholder: "Username",
-                                        required: true,
-                                        type: "text"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 106,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 102,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                        className: "sr-only",
-                                        htmlFor: "password",
-                                        children: "Password"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 119,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                        autoComplete: "current-password",
-                                        className: "relative block w-full appearance-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",
-                                        id: "password",
-                                        name: "password",
-                                        value: password,
-                                        onChange: (e)=>setPassword(e.target.value),
-                                        placeholder: "Password",
-                                        required: true,
-                                        type: "password"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Login.jsx",
-                                        lineNumber: 122,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 118,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 101,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "text-red-600",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                children: errors.name && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    children: errors.name
-                                }, void 0, false, {
-                                    fileName: "src/components/Login.jsx",
-                                    lineNumber: 136,
-                                    columnNumber: 30
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 136,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                children: errors.pass && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                    children: errors.pass
-                                }, void 0, false, {
-                                    fileName: "src/components/Login.jsx",
-                                    lineNumber: 137,
-                                    columnNumber: 30
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "src/components/Login.jsx",
-                                lineNumber: 137,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 135,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "pt-4",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                            className: "group relative flex w-full justify-center rounded-md border border-white bg-black py-2 px-4 text-sm font-medium text-white hover:bg-gray focus:outline-none focus:ring-2 focus:ring-3 focus:ring-offset-2",
-                            type: "submit",
-                            children: !signUp ? "Login" : "Sign up"
-                        }, void 0, false, {
-                            fileName: "src/components/Login.jsx",
-                            lineNumber: 140,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 139,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Login.jsx",
-                lineNumber: 99,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "mx-8 text-right mt-2",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: [
-                            " ",
-                            !signUp ? "Don't have an account?" : "Already have an account?",
-                            " "
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 149,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                        type: "submit",
-                        onClick: handleSignUpButton,
-                        children: !signUp ? "Sign up" : "Login"
-                    }, void 0, false, {
-                        fileName: "src/components/Login.jsx",
-                        lineNumber: 153,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Login.jsx",
-                lineNumber: 148,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true);
-}
-_s(Login, "VvDCxPxfnKOjE2qL468m6w6HD/4=");
-_c = Login;
-exports.default = Login;
-var _c;
-$RefreshReg$(_c, "Login");
-
-  $parcel$ReactRefreshHelpers$4580.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"irmnC":[function() {},{}]},["farZc","1xC6H","8lqZg"], "8lqZg", "parcelRequire6c22")
+},{"react":"21dqq","react-dom":"j6uA9","@radix-ui/react-slot":"26CNW","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["farZc","1xC6H","8lqZg"], "8lqZg", "parcelRequire6c22")
 
 //# sourceMappingURL=index.975ef6c8.js.map

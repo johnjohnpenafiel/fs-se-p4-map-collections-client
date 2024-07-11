@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { Outlet, useOutletContext } from "react-router-dom";
 
-function Login({ setUser }) {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [signUp, setSignUp] = useState(false);
+
+  const [setUser, login] = useOutletContext();
+
 
   function validateForm(data) {
     const errors = { name: "", pass: "" };
@@ -41,7 +45,7 @@ function Login({ setUser }) {
       if (signUp) {
         signup();
       } else {
-        login();
+        signin();
       }
     }
     setUsername("");
@@ -68,7 +72,7 @@ function Login({ setUser }) {
     console.log("Sign-up Successful");
   }
 
-  function login() {
+  function signin() {
     console.log("signing in...");
     fetch("http://localhost:4000/login", {
       method: "POST",
@@ -86,6 +90,7 @@ function Login({ setUser }) {
       .then((data) => {
         console.log(data);
         setUser(data);
+        login();
       });
   }
 
@@ -96,6 +101,7 @@ function Login({ setUser }) {
 
   return (
     <>
+      <Outlet context={setUser} />
       <form className="mt-8 mx-8 space-y-6" onSubmit={handleSubmit}>
         <input defaultValue="true" name="remember" type="hidden" />
         <div className="-space-y-px rounded-md shadow-sm">

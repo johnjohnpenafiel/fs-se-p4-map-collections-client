@@ -1,30 +1,27 @@
 import App from "./components/App";
-import Profile from "./components/Home";
-import Search from "./components/Search";
-import Favorites from "./components/Favorites";
-import ErrorPage from "./components/ErrorPage";
-
+import UserDashboard from "./components/UserDashboard";
+import About from "./components/About";
+import Login from "./components/Login";
 
 const routes = [
     {
         path: "/",
-        element: <App />,
-        errorElement: <ErrorPage />,
+        element: <App /> ,
         children: [
             {
-                path: "/profile/:id",
-                element: <Profile />
+                path: "/",
+                element: <UserDashboard /> ,
             },
             {
-                path: "/search",
-                element: <Search />
+                path: "/about",
+                element: <About />,
             },
             {
-                path: "/favorites",
-                element: <Favorites />
+                path: "/login",
+                element: <Login />,
             }
         ]
-    }
-];
+    },
+  ];
 
-export default routes;
+  export default routes;
